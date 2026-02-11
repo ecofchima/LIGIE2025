@@ -7,7 +7,7 @@
     <style>
         /* Base Styling */
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: 'Segoe UI', sans-serif; 
             padding: 10px; 
             background: #f0f2f5; 
             text-align: center; 
@@ -15,73 +15,34 @@
             margin: 0;
         }
         
-        /* Container that adjusts to screen size */
         .container { 
-            max-width: 1100px; 
+            max-width: 1200px; 
             margin: 20px auto; 
             background: white; 
-            padding: 20px; 
+            padding: 30px; 
             border-radius: 12px; 
             box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
-            width: 95%; /* Ensures margins on mobile */
+            width: 95%;
             box-sizing: border-box;
         }
         
-        h2 { 
-            border-bottom: 2px solid #2E86AB; 
-            display: inline-block; 
-            padding-bottom: 5px; 
-            margin-bottom: 30px; 
-            font-size: 1.8rem;
-        }
+        h2 { border-bottom: 2px solid #2E86AB; display: inline-block; padding-bottom: 5px; margin-bottom: 30px; }
+        .section-header { text-align: left; margin: 40px 0 15px 0; font-weight: bold; color: #2E86AB; text-transform: uppercase; letter-spacing: 1px; }
 
-        .section-header { 
-            text-align: left; 
-            margin: 40px 0 15px 0; 
-            font-weight: bold; 
-            color: #2E86AB; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            font-size: 1rem;
-        }
-
-        /* Note Boxes */
-        .intro-box { 
-            background: #eef7fa; 
-            border-left: 5px solid #2E86AB; 
-            padding: 20px; 
-            text-align: left; 
-            margin-bottom: 30px; 
-            border-radius: 4px; 
-            line-height: 1.6;
-        }
-
-        .method-note { 
-            background: #fdfefe; 
-            border: 1px dashed #7f8c8d; 
-            padding: 20px; 
-            text-align: left; 
-            margin-top: 40px; 
-            border-radius: 8px; 
-            font-size: 14px; 
-        }
-
-        .method-note h3 { margin-top: 0; color: #2C3E50; font-size: 16px; text-transform: uppercase; }
-
-        /* Dropdown: Full width on mobile, capped on desktop */
+        .intro-box { background: #eef7fa; border-left: 5px solid #2E86AB; padding: 20px; text-align: left; margin-bottom: 30px; border-radius: 4px; }
+        
+        /* Dropdown: Adaptive width */
         select { 
             width: 100%; 
-            max-width: 600px; 
+            max-width: 500px; 
             padding: 12px; 
             margin-bottom: 20px; 
             border: 2px solid #2E86AB; 
             border-radius: 8px; 
             font-size: 16px; 
             background: white; 
-            cursor: pointer; 
         }
 
-        /* Responsive Images */
         #mainImage { 
             max-width: 100%; 
             height: auto; 
@@ -91,12 +52,12 @@
             margin: 20px auto; 
         }
 
-        /* Grid for Charts - 1 column on mobile, 2 on desktop */
+        /* DYNAMIC GRID: Grows on desktop, stacks on mobile */
         .chart-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            display: flex; 
+            flex-wrap: wrap; 
             gap: 20px; 
-            margin-top: 20px; 
+            justify-content: center;
         }
 
         .chart-card { 
@@ -104,33 +65,34 @@
             padding: 15px; 
             border: 1px solid #eee; 
             border-radius: 10px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            flex: 1 1 450px; /* This makes images large on desktop */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .chart-card strong { display: block; margin-bottom: 10px; }
-        .chart-card img { width: 100%; height: auto; border-radius: 5px; }
+        .chart-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+        }
 
-        /* Tables Iframe container */
-        .table-frame { 
+        .chart-card img { 
             width: 100%; 
-            height: 550px; 
-            border: 1px solid #eee; 
-            border-radius: 10px; 
-            background: #fff; 
-            margin-bottom: 20px; 
+            height: auto; 
+            border-radius: 5px; 
+            cursor: pointer;
         }
 
-        .error-msg { color: #C0392B; font-weight: bold; margin-top: 10px; display: none; }
-        .footer { margin-top: 50px; font-size: 12px; color: #95a5a6; padding-bottom: 20px; }
-        
-        a { color: #2E86AB; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
+        /* Tables */
+        .table-frame { width: 100%; height: 550px; border: 1px solid #eee; border-radius: 10px; margin-bottom: 20px; }
 
-        /* Media Query for small phones */
-        @media (max-width: 480px) {
-            h2 { font-size: 1.4rem; }
+        .method-note { background: #fdfefe; border: 1px dashed #7f8c8d; padding: 20px; text-align: left; margin-top: 40px; border-radius: 8px; font-size: 14px; }
+        .footer { margin-top: 50px; font-size: 12px; color: #95a5a6; }
+        a { color: #2E86AB; text-decoration: none; font-weight: bold; }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 600px) {
             .container { padding: 15px; }
-            .section-header { font-size: 0.9rem; }
+            .chart-card { flex: 1 1 100%; } /* One image per row on small phones */
+            h2 { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -140,14 +102,12 @@
     <h2>LIGIE Reform 2025 Mexico's Trade Network Dashboard</h2>
 
     <div class="intro-box">
-        <strong>Executive Summary:</strong> On December 29, 2025, the Mexican government published a comprehensive reform to the Law of the General Import and Export Taxes (LIGIE). Effective January 1, 2026, the decree increases Most-Favored-Nation (MFN) import duties on 1,463 tariff lines within 34 HS Chapters. These increases, mainly between 25%-35% tariffs, target products from non-Free Trade Agreement (FTA) exporters. 
+        <strong>Executive Summary:</strong> On December 29, 2025, the Mexican government published a comprehensive reform to the Law of the General Import and Export Taxes (LIGIE). Effective January 1, 2026, the decree increases MFN duties on 1,463 tariff lines.
         <br><br>
         <a href="https://www.diputados.gob.mx/LeyesBiblio/ref/ligie_2022/LIGIE_2022_ref02_29dic25.pdf" target="_blank">View Official Decree (PDF)</a>
     </div>
     
     <div class="section-header">1. Interactive Supply Chain Exploration</div>
-    <p>Select a product to view Mexico's International Trade Partners and Market Opportunities:</p>
-
     <select id="networkSelector" onchange="changeNetwork()">
         <option value="">-- Select a Product --</option>
         <option value="Star_Z_ALUMINIUMPRODUCTS.png">ALUMINIUM PRODUCTS</option>
@@ -186,40 +146,30 @@
         <option value="Star_Z_WOOL.png">WOOL</option>
     </select>
 
-    <div id="errorDisplay" class="error-msg">Image not found. Please check the folder path.</div>
+    <div id="errorDisplay" style="color:red; display:none;">Image not found.</div>
     <img id="mainImage" src="" alt="Network Plot">
 
     <div class="section-header">2. Market Macro Analysis</div>
     <div class="chart-grid">
-        <div class="chart-card"><strong>Import Trends</strong><img src="Mexico_Final_Z_Networks/p1.png"></div>
-        <div class="chart-card"><strong>Tariff Exposure</strong><img src="Mexico_Final_Z_Networks/p2.png"></div>
-        <div class="chart-card"><strong>Non-FTA Imports</strong><img src="Mexico_Final_Z_Networks/p3.png"></div>
-        <div class="chart-card"><strong>Reform Vulnerability</strong><img src="Mexico_Final_Z_Networks/p4.png"></div>
+        <div class="chart-card"><strong>Import Trends</strong><img src="Mexico_Final_Z_Networks/p1.png" onclick="window.open(this.src)"></div>
+        <div class="chart-card"><strong>Tariff Exposure</strong><img src="Mexico_Final_Z_Networks/p2.png" onclick="window.open(this.src)"></div>
+        <div class="chart-card"><strong>Non-FTA Imports</strong><img src="Mexico_Final_Z_Networks/p3.png" onclick="window.open(this.src)"></div>
+        <div class="chart-card"><strong>Reform Vulnerability</strong><img src="Mexico_Final_Z_Networks/p4.png" onclick="window.open(this.src)"></div>
     </div>
 
     <div class="section-header">3. Data Tables</div>
-    
-    <p style="text-align:left;"><strong>Who Is At Risk (FTA vs. Non-FTA):</strong></p>
     <iframe class="table-frame" src="Mexico_Final_Z_Networks/risk_table.html"></iframe>
-
-    <p style="text-align:left;"><strong>Tariff Range by Market Size:</strong></p>
     <iframe class="table-frame" src="Mexico_Final_Z_Networks/tariff_table.html"></iframe>
-
-    <p style="text-align:left;"><strong>Product Master List:</strong></p>
     <iframe class="table-frame" src="Mexico_Final_Z_Networks/product_table.html"></iframe>
 
     <div class="method-note">
         <h3>Methodological Note: Risk Simplification</h3>
-        This analysis provides a baseline tariff risk assessment but is subject to the following technical exclusions:
-        <ul>
-            <li><strong>Non-Tariff Barriers:</strong> Risk classifications are based solely on ad-valorem duties. Non-tariff measures (NOMs), quotas, and compensatory duties are not factored into this model.</li>
-            <li><strong>RTA Specificity:</strong> While general Free Trade Agreements (FTAs) are mapped, individual agreements (e.g., USMCA or EU-Mexico) contain specific rules of origin and sector-specific exclusions.</li>
-        </ul>
-        For detailed supply chain impacts, please contact: <a href="mailto:fernanda.chimahernandez@gmail.com">fernanda.chimahernandez@gmail.com</a>
+        This analysis provides a baseline tariff risk assessment but excludes non-tariff barriers and specific RTA rules of origin.
+        <br>Contact: <a href="mailto:fernanda.chimahernandez@gmail.com">fernanda.chimahernandez@gmail.com</a>
     </div>
 
     <div class="footer">
-        Data Source: BACI (2024) | Analysis by Fernanda Chima | GitHub: LIGIE2025
+        Data Source: BACI (2024) | Analysis by Fernanda Chima
     </div>
 </div>
 
@@ -235,15 +185,10 @@
             return;
         }
 
-        const fullPath = folder + selector.value;
-        img.src = fullPath;
+        img.src = folder + selector.value;
         img.style.display = "block";
         error.style.display = "none";
-
-        img.onerror = function() {
-            img.style.display = "none";
-            error.style.display = "block";
-        };
+        img.onerror = () => { img.style.display = "none"; error.style.display = "block"; };
     }
 </script>
 

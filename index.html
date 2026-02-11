@@ -2,55 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mexico Trade Network: LIGIE 2025 Analysis</title>
+    <title>Mexico Trade Network: LIGIE 2025</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; background-color: #f4f7f6; color: #2C3E50; }
-        .container { max-width: 1100px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; }
-        h1 { margin-bottom: 10px; font-size: 24px; }
-        .selector-box { margin: 20px 0; padding: 20px; border-bottom: 1px solid #eee; }
-        select { padding: 12px 20px; font-size: 16px; border-radius: 8px; border: 2px solid #2E86AB; cursor: pointer; width: 60%; outline: none; transition: 0.3s; }
-        select:hover { border-color: #C0392B; }
-        .image-display { margin-top: 20px; transition: opacity 0.3s ease-in-out; }
-        img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; }
-        .footer { margin-top: 30px; font-size: 12px; color: #7f8c8d; }
+        body { font-family: sans-serif; padding: 30px; background: #f4f4f4; text-align: center; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        select { width: 80%; padding: 10px; margin: 20px 0; border: 2px solid #2E86AB; border-radius: 5px; font-size: 16px; }
+        img { max-width: 100%; height: auto; border: 1px solid #ddd; margin-top: 10px; display: block; margin-left: auto; margin-right: auto; }
+        .error-msg { color: #C0392B; font-weight: bold; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>LIGIE 2025: Strategic Trade Network Visualizer</h1>
-    <p>Select a product category to analyze the Tier-2 (Z-Supplier) supply chain impact.</p>
+    <h2>LIGIE 2025 Strategic Network Visualizer</h2>
+    <p>Select a product to view its trade ecosystem:</p>
 
-    <div class="selector-box">
-        <select id="networkSelector" onchange="changeNetwork()">
-            <option value="Star_Z_PAPER.png">Paper Products</option>
-            <option value="Star_Z_STEEL.png">Steel Products</option>
-            <option value="Star_Z_ELECTRONICS.png">Electronics</option>
-            </select>
-    </div>
+    <select id="networkSelector" onchange="changeNetwork()">
+        <option value="">-- Select a Product --</option>
+        <option value="Star_Z_ALUMINIUMPRODUCTS.png">ALUMINIUM PRODUCTS</option>
+        <option value="Star_Z_APPARELKNITTED.png">APPAREL KNITTED</option>
+        <option value="Star_Z_APPARELTEXTILE.png">APPAREL TEXTILE</option>
+        <option value="Star_Z_ARTICLESFABRIC.png">ARTICLES FABRIC</option>
+        <option value="Star_Z_ARTICLESMETAL.png">ARTICLES METAL</option>
+        <option value="Star_Z_CARPETS.png">CARPETS</option>
+        <option value="Star_Z_CERAMIC.png">CERAMIC</option>
+        <option value="Star_Z_COATEDTEXTILES.png">COATED TEXTILES</option>
+        <option value="Star_Z_COTTON.png">COTTON</option>
+        <option value="Star_Z_ELECTRICALMACHINERY.png">ELECTRICAL MACHINERY</option>
+        <option value="Star_Z_FIBRES.png">FIBRES</option>
+        <option value="Star_Z_FURNITURE.png">FURNITURE</option>
+        <option value="Star_Z_GLASS.png">GLASS</option>
+        <option value="Star_Z_IRONPRODUCTS.png">IRON PRODUCTS</option>
+        <option value="Star_Z_IRONSTEEL.png">IRON STEEL</option>
+        <option value="Star_Z_KNITTEDFABRICS.png">KNITTED FABRICS</option>
+        <option value="Star_Z_LEATHER.png">LEATHER</option>
+        <option value="Star_Z_MACHINERY.png">MACHINERY</option>
+        <option value="Star_Z_MEDICALEQUIPMENT.png">MEDICAL EQUIPMENT</option>
+        <option value="Star_Z_MISCELLANEOUS.png">MISCELLANEOUS</option>
+        <option value="Star_Z_OILS.png">OILS</option>
+        <option value="Star_Z_PAPER.png">PAPER</option>
+        <option value="Star_Z_PLASTICS.png">PLASTICS</option>
+        <option value="Star_Z_RUBBER.png">RUBBER</option>
+        <option value="Star_Z_SILK.png">SILK</option>
+        <option value="Star_Z_SOAP.png">SOAP</option>
+        <option value="Star_Z_SYNTHETICS.png">SYNTHETICS</option>
+        <option value="Star_Z_TOYS.png">TOYS</option>
+        <option value="Star_Z_TRACTORS.png">TRACTORS</option>
+        <option value="Star_Z_TUFTEDTEXTILES.png">TUFTED TEXTILES</option>
+        <option value="Star_Z_VEGFIBERS.png">VEG FIBERS</option>
+        <option value="Star_Z_WADDING.png">WADDING</option>
+        <option value="Star_Z_WATERPROOFFOOTWEAR.png">WATERPROOF FOOTWEAR</option>
+        <option value="Star_Z_WOOL.png">WOOL</option>
+    </select>
 
-    <div class="image-display">
-        <img id="mainImage" src="Mexico_Final_Z_Networks/Star_Z_PAPER.png" alt="Trade Network Visualization">
-    </div>
-
-    <div class="footer">
-        Data Source: BACI (2024) | Analysis by Fernanda Chima | Repository: LIGIE2025
-    </div>
+    <div id="errorDisplay" class="error-msg">Image not found. Please check the folder path.</div>
+    <img id="mainImage" src="" alt="Network Plot">
 </div>
 
 <script>
     function changeNetwork() {
         const selector = document.getElementById('networkSelector');
         const img = document.getElementById('mainImage');
-        const folder = "Mexico_Final_Z_Networks/"; // Name of your folder
-        
-        // Add a slight fade effect
-        img.style.opacity = 0;
-        
-        setTimeout(() => {
-            img.src = folder + selector.value;
-            img.style.opacity = 1;
-        }, 200);
+        const error = document.getElementById('errorDisplay');
+        const folder = "Mexico_Final_Z_Networks/"; // EXACT FOLDER NAME
+
+        if (selector.value === "") {
+            img.style.display = "none";
+            return;
+        }
+
+        const fullPath = folder + selector.value;
+        img.src = fullPath;
+        img.style.display = "block";
+        error.style.display = "none";
+
+        // Error handling if image doesn't exist
+        img.onerror = function() {
+            img.style.display = "none";
+            error.style.display = "block";
+            console.error("Failed to load: " + fullPath);
+        };
     }
 </script>
 

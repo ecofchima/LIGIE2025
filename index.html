@@ -13,6 +13,11 @@
         h2 { border-bottom: 2px solid #2E86AB; display: inline-block; padding-bottom: 5px; margin-bottom: 30px; }
         .section-header { text-align: left; margin: 40px 0 15px 0; font-weight: bold; color: #2E86AB; text-transform: uppercase; letter-spacing: 1px; }
 
+        /* Note Boxes */
+        .intro-box { background: #eef7fa; border-left: 5px solid #2E86AB; padding: 20px; text-align: left; margin-bottom: 30px; border-radius: 4px; }
+        .method-note { background: #fdfefe; border: 1px dashed #7f8c8d; padding: 20px; text-align: left; margin-top: 40px; border-radius: 8px; font-size: 14px; }
+        .method-note h3 { margin-top: 0; color: #2C3E50; font-size: 16px; text-transform: uppercase; }
+
         /* Dropdown Style */
         select { width: 70%; padding: 12px; margin-bottom: 20px; border: 2px solid #2E86AB; border-radius: 8px; font-size: 16px; background: white; cursor: pointer; }
 
@@ -29,12 +34,20 @@
 
         .error-msg { color: #C0392B; font-weight: bold; margin-top: 10px; display: none; }
         .footer { margin-top: 50px; font-size: 12px; color: #95a5a6; }
+        a { color: #2E86AB; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h2>LIGIE Reform 2025 Mexico's Trade Network Dashboard</h2>
+
+    <div class="intro-box">
+        <strong>Executive Summary:</strong> On December 29, 2025, the Mexican government published a comprehensive reform to the Law of the General Import and Export Taxes (LIGIE). Effective January 1, 2026, the decree increases Most-Favored-Nation (MFN) import duties on 1,463 tariff lines within 34 HS Chapters. These increases, mainly between 25%-35% tariffs, target products from non-Free Trade Agreement (FTA) exporters. 
+        <br><br>
+        <a href="https://www.diputados.gob.mx/LeyesBiblio/ref/ligie_2022/LIGIE_2022_ref02_29dic25.pdf" target="_blank">View Official Decree (PDF)</a>
+    </div>
     
     <div class="section-header">1. Interactive Supply Chain Exploration</div>
     <p>Select a product to view Mexico's International Trade Partners and Market Opportunities:</p>
@@ -98,6 +111,16 @@
 
     <p style="text-align:left;"><strong>Product Master List:</strong></p>
     <iframe class="table-frame" src="Mexico_Final_Z_Networks/product_list.html"></iframe>
+
+    <div class="method-note">
+        <h3>Methodological Note: Risk Simplification</h3>
+        This analysis provides a baseline tariff risk assessment but is subject to the following technical exclusions:
+        <ul>
+            <li><strong>Non-Tariff Barriers:</strong> Risk classifications are based solely on ad-valorem duties. Non-tariff measures (NOMs), quotas, and compensatory duties are not factored into this model.</li>
+            <li><strong>RTA Specificity:</strong> While general Free Trade Agreements (FTAs) are mapped, individual agreements (e.g., USMCA or EU-Mexico) contain specific rules of origin and sector-specific exclusions, particularly in the automotive and textile industries.</li>
+        </ul>
+        For detailed supply chain impacts, please refer to the HS Chapter network analysis provided above or contact me at <a href="mailto:fernanda.chimahernandez@gmail.com">fernanda.chimahernandez@gmail.com</a>
+    </div>
 
     <div class="footer">
         Data Source: BACI (2024) | Analysis by Fernanda Chima | GitHub: LIGIE2025
